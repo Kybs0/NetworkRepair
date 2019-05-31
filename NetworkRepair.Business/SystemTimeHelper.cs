@@ -124,7 +124,7 @@ namespace NetworkRepair.Business
                 }
                 catch (Exception ex)
                 {
-                    errorMsg = $"时间服务器连接失败！/r错误信息：{ex.Message}系统提示";
+                    errorMsg = $"时间服务器连接失败！\r\n错误信息：{ex.Message}系统提示";
                 }
             }
             return socket.Connected;
