@@ -30,7 +30,7 @@ namespace NetworkRepair
                 var key = @"SOFTWARE\Microsoft\Internet Explorer";
                 var majorVersion = IEVersionHelper.GetMajorVersion(key);
                 var detailVersion = IEVersionHelper.GetDetailVersion(key);
-                AboutButton.ToolTip = $"IE主版本：{majorVersion}\r\nIE详细版本：{detailVersion}";
+                AboutButton.ToolTip = $"IE版本：{majorVersion}\r\n详细：{detailVersion}\r\n copyright @ dotnet-campus";
                 AboutButton.Visibility = Visibility.Visible;
             };
         }
