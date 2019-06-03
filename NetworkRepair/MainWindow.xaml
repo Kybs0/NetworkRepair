@@ -8,7 +8,7 @@
         Title="IE环境修复" 
         BorderBrush="#D0D1D6" ShowInTaskbar="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         AllowsTransparency="True" WindowStyle="None" Background="Transparent" x:Name="TheSettingWindow" 
-        Width="520" Height="380" Icon="ie.ico">
+        Width="520" Height="360" Icon="ie.ico">
     <Window.Resources>
         <ResourceDictionary>
             <Color x:Key="Color.Text.Normal">#666666</Color>
