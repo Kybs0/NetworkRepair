@@ -34,13 +34,14 @@
                                 <Button x:Name="ResetIe" Style="{StaticResource Style.Button.ImageAndText}" Content="重置IE"
                                     local:ControlHelper.Image="{StaticResource Image.Revert}" Margin="10,6"
                                     Click="ResetIe_OnClick"/>
-                                <Button x:Name="DeleteRegistry" Style="{StaticResource Style.Button.ImageAndText}" Content="删除注册表"
+                                <!--<Button x:Name="DeleteRegistry" Style="{StaticResource Style.Button.ImageAndText}" Content="删除注册表"
                                     local:ControlHelper.Image="{StaticResource Image.Delete}" Margin="10,6"
-                                    Click="DeleteRegistry_OnClick"/>
+                                    Click="DeleteRegistry_OnClick"/>-->
+                                <Button x:Name="RevertHighSetting" Style="{StaticResource Style.Button.ImageAndText}" Content="还原高级设置"
+                                        local:ControlHelper.Image="{StaticResource Image.RevertHighLevel}" Margin="10,6"
+                                        Click="RevertHighSetting_OnClick"/>
                             </StackPanel>
-                            <Button x:Name="RevertHighSetting" Style="{StaticResource Style.Button.ImageAndText}" Content="还原高级设置"
-                                local:ControlHelper.Image="{StaticResource Image.RevertHighLevel}" Margin="10,6"
-                                Click="RevertHighSetting_OnClick"/>
+                            
 
                             <Button x:Name="SetIeSecurity"  Style="{StaticResource Style.Button.ImageAndText}" Content="设置IE安全等级(中)"
                                 local:ControlHelper.Image="{StaticResource Image.Security}" Margin="10,6"
