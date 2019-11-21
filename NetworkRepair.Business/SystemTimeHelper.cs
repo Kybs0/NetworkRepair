@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
+using Microsoft.VisualBasic;
 
 namespace NetworkRepair.Business
 {
@@ -17,8 +18,9 @@ namespace NetworkRepair.Business
         /// 更新系统时间
         /// </summary>
         /// <returns>更新结果</returns>
-        public static string UpdateSystemTime()
+        public static bool UpdateSystemTime(out string result)
         {
+            result = string.Empty;
             try
             {
                 var connected = TryConnectToTimeServer(out Socket socket, out var startTime, out string errorMsg);
@@ -33,17 +35,19 @@ namespace NetworkRepair.Business
                         var dateTimeValue = receiveMsgList[1] + " " + receiveMsgList[2];
                         SetLocalTime(startTime, dateTimeValue);
                     }
+                    return true;
                 }
                 else
                 {
-                    return errorMsg;
+                    result = errorMsg;
+                    return false;
                 }
             }
             catch (Exception e)
             {
-                return $"函数{nameof(UpdateSystemTime)}执行异常，{e.Message}";
+                result = $"函数{nameof(UpdateSystemTime)}执行异常，{e.Message}";
+                return false;
             }
-            return "时间已同步";
         }
         /// <summary>
         /// 设置系统时间
