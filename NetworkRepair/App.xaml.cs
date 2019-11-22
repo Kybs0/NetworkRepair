@@ -55,11 +55,11 @@ namespace NetworkRepair
             try
             {
                 var result = SystemTimeHelper.UpdateSystemTime(out var errorMsg);
-                Console.WriteLine($@"{result}{DataSepartor}{errorMsg}");
+                LogHelper.Log($@"{result}{DataSepartor}{errorMsg}");
             }
             catch (Exception e)
             {
-                Console.WriteLine($@"{false}{DataSepartor}{e.Message}");
+                LogHelper.Log($@"{false}{DataSepartor}{e.Message}");
             }
             finally
             {
@@ -75,11 +75,11 @@ namespace NetworkRepair
                 userRegisterProvider.SetCertificateVerificationChecked(true);
                 userRegisterProvider.SetSSLAndTSLState(false);
                 userRegisterProvider.SetInternetProtectLevelNormal();
-                Console.WriteLine($@"{true}{DataSepartor}{string.Empty}");
+                LogHelper.Log($@"{true}{DataSepartor}{string.Empty}");
             }
             catch (Exception e)
             {
-                Console.WriteLine($@"{false}{DataSepartor}{e.Message}");
+                LogHelper.Log($@"{false}{DataSepartor}{e.Message}");
             }
             finally
             {

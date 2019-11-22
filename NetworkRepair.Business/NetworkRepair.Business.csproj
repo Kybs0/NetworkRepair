@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogHelper.cs" />
     <Compile Include="CmdExecuteHelper.cs" />
     <Compile Include="IEVersionHelper.cs" />
     <Compile Include="RegistryHelper.cs" />
