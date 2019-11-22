@@ -24,6 +24,7 @@ namespace NetworkRepair
         }
         private static readonly string FixIeCommand = "FixIe";
         private static readonly string FixSystemTimeCommand = "FixSystemTime";
+        private static readonly string FixSystemTimeByDefinedCommand = "FixSystemTimeByDefined";
         private void App_Startup(object sender, StartupEventArgs e)
         {
             var eArgs = e.Args;
@@ -33,20 +34,34 @@ namespace NetworkRepair
                 if (eArg == FixIeCommand)
                 {
                     FixIe();
+                    return;
                 }
                 else if (eArg == FixSystemTimeCommand)
                 {
                     FixSystemTime();
-                }
-                else
-                {
-                    ShowMainWindow();
+                    return;
                 }
             }
-            else
+            else if (eArgs.Length == 2)
             {
-                ShowMainWindow();
+                var args1 = eArgs[0];
+                var args2 = eArgs[1];
+
+                if (args1 == FixSystemTimeByDefinedCommand)
+                {
+                    if (!string.IsNullOrEmpty(args2) && DateTime.TryParse(args2, out DateTime dateTime))
+                    {
+                        FixSystemTime(dateTime);
+                    }
+                    else
+                    {
+                        //如外界提供时间为空，则取国际服务器获取时间修复
+                        FixSystemTime();
+                    }
+                    return;
+                }
             }
+            ShowMainWindow();
         }
 
         private const string DataSepartor = " | ";
@@ -56,6 +71,22 @@ namespace NetworkRepair
             {
                 var result = SystemTimeHelper.UpdateSystemTime(out var errorMsg);
                 LogHelper.Log($@"{result}{DataSepartor}{errorMsg}");
+            }
+            catch (Exception e)
+            {
+                LogHelper.Log($@"{false}{DataSepartor}{e.Message}");
+            }
+            finally
+            {
+                Environment.Exit(0);
+            }
+        }
+        private void FixSystemTime(DateTime time)
+        {
+            try
+            {
+                SystemTimeHelper.SetLocalTime(time);
+                LogHelper.Log($@"{true}|{string.Empty}");
             }
             catch (Exception e)
             {

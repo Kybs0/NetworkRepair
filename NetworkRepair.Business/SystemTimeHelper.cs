@@ -64,9 +64,17 @@ namespace NetworkRepair.Business
             //处置北京时间 +8时   
             var updatedTime = updatedUtcTime.AddHours(8);
 
+            SetLocalTime(updatedTime);
+        }
+        /// <summary>
+        /// 设置系统时间
+        /// </summary>
+        /// <param name="newTime">新的时间</param>
+        public static void SetLocalTime(DateTime newTime)
+        {
             //转换System.DateTime到SystemTime   
             SystemTime systemTime = new SystemTime();
-            systemTime.FromDateTime(updatedTime);
+            systemTime.FromDateTime(newTime);
 
             //调用Win32 API设置系统时间   
             Win32API.SetLocalTime(ref systemTime);
