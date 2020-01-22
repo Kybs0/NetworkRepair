@@ -49,9 +49,16 @@ namespace NetworkRepair
 
                 if (args1 == FixSystemTimeByDefinedCommand)
                 {
-                    if (!string.IsNullOrEmpty(args2) && DateTime.TryParse(args2, out DateTime dateTime))
+                    //UTC时间
+                    if (!string.IsNullOrEmpty(args2) &&
+                        long.TryParse(args2, out long dateTimeValue)
+                        && dateTimeValue > 0)
                     {
-                        FixSystemTime(dateTime);
+                        //TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1)).AddMilliseconds(milliseconds);
+                        var utcTime = new DateTime(1970, 1, 1).AddMilliseconds(dateTimeValue);
+                        //处置北京时间 +8时   
+                        var newTime = utcTime.AddHours(8);
+                        FixSystemTime(newTime);
                     }
                     else
                     {
